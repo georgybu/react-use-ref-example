@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useRef} from "react";
 
 function App() {
+  const divRef = useRef();
+
+  useEffect(() => {
+    const e = document.querySelector('h1');
+    if (e) {
+      // you can move it to DIV
+      // divRef.current.appendChild(e)
+
+      // or you can copy it to DIV
+      const copyOfElement = e.cloneNode(true);
+      divRef.current.appendChild(copyOfElement);
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div ref={divRef}/>
     </div>
   );
 }
